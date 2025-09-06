@@ -8,6 +8,15 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <canvas id="particles-canvas" class="bg-animation" style="
+              position: fixed;
+              top: 0; left: 0;
+              width: 100vw; height: 100vh;
+              z-index: -1;
+              pointer-events: none;
+            ">
+    </canvas>
+
     <div class="container">
         <!-- Header -->
         <header class="game-header">
@@ -344,5 +353,6 @@
     </div>
 
     <script src="app.js"></script>
+    <script src="animation.js"></script>
 </body>
 </html>
