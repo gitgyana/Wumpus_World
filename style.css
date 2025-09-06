@@ -761,7 +761,7 @@ select.form-control {
 
 .game-container {
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: auto auto auto;
     gap: var(--space-32);
     margin-bottom: var(--space-32);
     align-items: start;
@@ -895,7 +895,7 @@ select.form-control {
 .status-panel {
     width: 280px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: var(--space-16);
 }
 
@@ -950,7 +950,7 @@ select.form-control {
 
 .controls-panel {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: var(--space-24);
     margin-bottom: var(--space-24);
 }
