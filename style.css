@@ -555,6 +555,7 @@ select.form-control {
 .card__footer {
     padding: var(--space-16);
     border-bottom: 1px solid var(--color-card-border-inner);
+    align-items: center;
 }
 
 /* Status indicators - simplified with CSS variables */
@@ -925,6 +926,7 @@ select.form-control {
     display: flex;
     flex-direction: column;
     gap: var(--space-8);
+    align-items: center;
 }
 
 .perception {
@@ -1165,4 +1167,8 @@ button,
     .button-logo {
         display: block;
     }
+}
+
+h3 {
+    text-align: center;
 }
