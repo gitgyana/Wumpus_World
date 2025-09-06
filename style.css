@@ -1120,6 +1120,18 @@ button,
     color: var(--color-error);
 }
 
+.footer {
+    text-align: center;
+    padding: var(--space-8);
+    /*border-top: 1px solid rgba(var(--color-teal-500-rgb), 0.1);*/
+    font-size: var(--font-size-sm);
+}
+
+.footer p{
+    margin: 0;
+}
+
+
 /* Responsive design */
 @media (max-width: 1024px) {
     .game-container {

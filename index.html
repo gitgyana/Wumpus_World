@@ -317,21 +317,17 @@
                     <h3>How to Play</h3>
                 </div>
                 <div class="card__body">
-                    <div class="instructions-content">
-                        <div class="instruction-section">
-                            <h4>Goal</h4>
-                            <p>Find the gold and return to [1,1] to escape the cave safely.</p>
-                        </div>
+                    <div class="instructions-content" style="text-align: center">
                         <div class="instruction-section">
                             <h4>Hazards</h4>
-                            <ul>
+                            <ul style="list-style-type: none;">
                                 <li><strong>Wumpus:</strong> Deadly creature that kills on contact</li>
                                 <li><strong>Pits:</strong> Bottomless holes that are deadly</li>
                             </ul>
                         </div>
                         <div class="instruction-section">
                             <h4>Perceptions</h4>
-                            <ul>
+                            <ul style="list-style-type: none;">
                                 <li><strong>Stench:</strong> Wumpus in adjacent room</li>
                                 <li><strong>Breeze:</strong> Pit in adjacent room</li>
                                 <li><strong>Glitter:</strong> Gold in current room</li>
@@ -339,7 +335,7 @@
                         </div>
                         <div class="instruction-section">
                             <h4>Scoring</h4>
-                            <ul>
+                            <ul style="list-style-type: none;">
                                 <li>+1000: Win the game</li>
                                 <li>-1000: Die from hazard</li>
                                 <li>-1: Each move</li>
@@ -352,6 +348,13 @@
         </div>
     </div>
 
+    <footer class="footer">
+        <p>&copy; <span id="year"></span> Gyana Priyadarshi. Made with ❤️ and &lt;/&gt;</p>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
     <script src="app.js"></script>
     <script src="animation.js"></script>
 </body>
