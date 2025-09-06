@@ -547,7 +547,7 @@ class WumpusWorld {
         const messageEl = document.getElementById('gameOverMessage');
         const finalScore = document.getElementById('finalScore');
 
-        if (title) title.textContent = this.gameState === 'won' ? '!! Victory !!' : '[*] Game Over [*]';
+        if (title) title.textContent = this.gameState === 'won' ? 'Victory' : 'Game Over';
         if (messageEl) messageEl.textContent = message;
         if (finalScore) finalScore.textContent = this.score;
         if (modal) modal.classList.remove('hidden');
