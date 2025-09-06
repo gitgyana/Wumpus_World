@@ -1,4 +1,3 @@
-// Wumpus World Game Logic
 class WumpusWorld {
     constructor() {
         this.gridSize = 4;
@@ -24,7 +23,6 @@ class WumpusWorld {
     }
 
     initializeGame() {
-        // Player state
         this.playerX = 1;
         this.playerY = 1;
         this.facing = 'right';
@@ -35,10 +33,8 @@ class WumpusWorld {
         this.visitedCells = new Set();
         this.visitedCells.add(`${this.playerX},${this.playerY}`);
         
-        // Current perceptions
         this.currentPerceptions = new Set();
         
-        // Generate random world
         this.generateWorld();
         
         console.log('Game initialized successfully');
@@ -46,7 +42,6 @@ class WumpusWorld {
     }
 
     generateWorld() {
-        // Initialize empty grid
         this.grid = {};
         for (let x = 1; x <= this.gridSize; x++) {
             for (let y = 1; y <= this.gridSize; y++) {
@@ -54,7 +49,6 @@ class WumpusWorld {
             }
         }
 
-        // Available positions (excluding starting position [1,1])
         const availablePositions = [];
         for (let x = 1; x <= this.gridSize; x++) {
             for (let y = 1; y <= this.gridSize; y++) {
@@ -64,20 +58,17 @@ class WumpusWorld {
             }
         }
 
-        // Randomly place Wumpus
         const wumpusIndex = Math.floor(Math.random() * availablePositions.length);
         const wumpusPos = availablePositions.splice(wumpusIndex, 1)[0];
         this.grid[`${wumpusPos[0]},${wumpusPos[1]}`].wumpus = true;
         this.wumpusAlive = true;
         console.log('Wumpus placed at:', wumpusPos);
 
-        // Randomly place Gold
         const goldIndex = Math.floor(Math.random() * availablePositions.length);
         const goldPos = availablePositions.splice(goldIndex, 1)[0];
         this.grid[`${goldPos[0]},${goldPos[1]}`].gold = true;
         console.log('Gold placed at:', goldPos);
 
-        // Randomly place 3 pits
         for (let i = 0; i < 3 && availablePositions.length > 0; i++) {
             const pitIndex = Math.floor(Math.random() * availablePositions.length);
             const pitPos = availablePositions.splice(pitIndex, 1)[0];
@@ -89,7 +80,6 @@ class WumpusWorld {
     setupEventListeners() {
         console.log('Setting up event listeners...');
         
-        // Movement controls
         const forwardBtn = document.getElementById('forward');
         const turnLeftBtn = document.getElementById('turnLeft');
         const turnRightBtn = document.getElementById('turnRight');
@@ -112,7 +102,6 @@ class WumpusWorld {
             this.turnRight();
         });
         
-        // Action controls
         const grabBtn = document.getElementById('grab');
         const shootBtn = document.getElementById('shoot');
         const climbBtn = document.getElementById('climb');
@@ -135,7 +124,6 @@ class WumpusWorld {
             this.climb();
         });
         
-        // Restart game
         const restartBtn = document.getElementById('restartGame');
         if (restartBtn) restartBtn.addEventListener('click', (e) => {
             e.preventDefault();
@@ -160,7 +148,6 @@ class WumpusWorld {
 
         console.log(`New position would be: [${newX},${newY}]`);
 
-        // Check bounds
         if (newX < 1 || newX > this.gridSize || newY < 1 || newY > this.gridSize) {
             console.log('Hit wall, adding bump perception');
             this.addPerception('bump');
@@ -169,15 +156,13 @@ class WumpusWorld {
             return;
         }
 
-        // Move player
         this.playerX = newX;
         this.playerY = newY;
-        this.score -= 1; // Move penalty
+        this.score -= 1;
         this.visitedCells.add(`${this.playerX},${this.playerY}`);
 
         console.log(`Player moved to [${this.playerX},${this.playerY}]`);
 
-        // Check for hazards
         const currentCell = this.grid[`${this.playerX},${this.playerY}`];
         
         if (currentCell.wumpus && this.wumpusAlive) {
@@ -196,7 +181,6 @@ class WumpusWorld {
             return;
         }
 
-        // Update perceptions and display
         this.updatePerceptions();
         this.updateDisplay();
         this.showMessage(`Moved to [${this.playerX},${this.playerY}]`);
@@ -207,7 +191,7 @@ class WumpusWorld {
         
         console.log(`Turning left from ${this.facing}`);
         const currentIndex = this.directions.indexOf(this.facing);
-        this.facing = this.directions[(currentIndex + 3) % 4]; // +3 is same as -1 but positive
+        this.facing = this.directions[(currentIndex + 3) % 4];
         this.score -= 1;
         console.log(`Now facing ${this.facing}`);
         this.updateDisplay();
@@ -234,7 +218,7 @@ class WumpusWorld {
         
         if (currentCell.gold && !this.hasGold) {
             this.hasGold = true;
-            currentCell.gold = false; // Remove gold from cell
+            currentCell.gold = false;
             console.log('Gold grabbed successfully');
             this.showMessage('💰 You picked up the gold! Now return to [1,1] and climb to win!');
         } else if (this.hasGold) {
@@ -256,9 +240,8 @@ class WumpusWorld {
 
         console.log('Shooting arrow');
         this.arrows--;
-        this.score -= 10; // Arrow penalty
+        this.score -= 10;
 
-        // Arrow travels in current direction until it hits wall or Wumpus
         const vector = this.directionVectors[this.facing];
         let arrowX = this.playerX;
         let arrowY = this.playerY;
@@ -268,24 +251,21 @@ class WumpusWorld {
             arrowX += vector[0];
             arrowY += vector[1];
 
-            // Check bounds
             if (arrowX < 1 || arrowX > this.gridSize || arrowY < 1 || arrowY > this.gridSize) {
                 hit = true;
                 this.showMessage('🏹 Your arrow hit the wall and was lost.');
                 break;
             }
 
-            // Check for Wumpus
             const cell = this.grid[`${arrowX},${arrowY}`];
             if (cell.wumpus && this.wumpusAlive) {
                 this.wumpusAlive = false;
-                cell.wumpus = false; // Remove dead Wumpus
+                cell.wumpus = false;
                 hit = true;
                 this.addPerception('scream');
                 this.showMessage('💀 You hear a terrible scream! The Wumpus is dead!');
                 console.log('Wumpus killed by arrow');
                 
-                // Update perceptions since Wumpus is dead
                 setTimeout(() => {
                     this.updatePerceptions();
                     this.updateDisplay();
@@ -311,7 +291,6 @@ class WumpusWorld {
             return;
         }
 
-        // Win condition
         this.gameState = 'won';
         this.score += 1000;
         console.log('Player won the game!');
@@ -324,32 +303,27 @@ class WumpusWorld {
 
         const currentCell = this.grid[`${this.playerX},${this.playerY}`];
         
-        // Check for glitter (gold in current room)
         if (currentCell.gold) {
             this.addPerception('glitter');
             console.log('Gold detected - adding glitter perception');
         }
 
-        // Check adjacent cells for stench and breeze
         for (const direction of this.directions) {
             const vector = this.directionVectors[direction];
             const adjX = this.playerX + vector[0];
             const adjY = this.playerY + vector[1];
 
-            // Skip if out of bounds
             if (adjX < 1 || adjX > this.gridSize || adjY < 1 || adjY > this.gridSize) {
                 continue;
             }
 
             const adjCell = this.grid[`${adjX},${adjY}`];
             
-            // Stench from adjacent Wumpus
             if (adjCell.wumpus && this.wumpusAlive) {
                 this.addPerception('stench');
                 console.log('Wumpus detected nearby - adding stench perception');
             }
 
-            // Breeze from adjacent pit
             if (adjCell.pit) {
                 this.addPerception('breeze');
                 console.log('Pit detected nearby - adding breeze perception');
@@ -363,7 +337,6 @@ class WumpusWorld {
         this.currentPerceptions.add(perception);
         console.log('Added perception:', perception);
         
-        // Auto-remove bump and scream after a short time
         if (perception === 'bump' || perception === 'scream') {
             setTimeout(() => {
                 this.currentPerceptions.delete(perception);
@@ -373,7 +346,6 @@ class WumpusWorld {
     }
 
     clearPerceptions() {
-        // Keep scream if it exists, clear others
         const hasScream = this.currentPerceptions.has('scream');
         this.currentPerceptions.clear();
         if (hasScream) {
@@ -398,7 +370,6 @@ class WumpusWorld {
         
         gridElement.innerHTML = '';
 
-        // Create grid cells (top to bottom, left to right)
         for (let y = this.gridSize; y >= 1; y--) {
             for (let x = 1; x <= this.gridSize; x++) {
                 const cell = document.createElement('div');
@@ -409,7 +380,6 @@ class WumpusWorld {
                 const isPlayerHere = (x === this.playerX && y === this.playerY);
                 const isVisited = this.visitedCells.has(`${x},${y}`);
 
-                // Add cell classes
                 if (isPlayerHere) {
                     cell.classList.add('player');
                 }
@@ -417,7 +387,6 @@ class WumpusWorld {
                     cell.classList.add('visited');
                 }
 
-                // Add perception classes for current cell
                 if (isPlayerHere) {
                     if (this.currentPerceptions.has('stench')) {
                         cell.classList.add('stench');
@@ -430,7 +399,6 @@ class WumpusWorld {
                     }
                 }
 
-                // Show player
                 if (isPlayerHere) {
                     const playerIcon = document.createElement('div');
                     playerIcon.className = 'player-icon';
@@ -438,7 +406,6 @@ class WumpusWorld {
                     cell.appendChild(playerIcon);
                 }
 
-                // Show game objects (only if visited or debug mode)
                 if (isVisited || this.gameState !== 'playing') {
                     if (cellData.wumpus && this.wumpusAlive) {
                         const wumpus = document.createElement('div');
@@ -506,7 +473,6 @@ class WumpusWorld {
     }
 
     updateControls() {
-        // Disable all controls if game is over
         const controls = ['forward', 'turnLeft', 'turnRight', 'grab', 'shoot', 'climb'];
         controls.forEach(id => {
             const element = document.getElementById(id);
@@ -515,7 +481,6 @@ class WumpusWorld {
             }
         });
 
-        // Special cases
         if (this.gameState === 'playing') {
             const shootBtn = document.getElementById('shoot');
             if (shootBtn) {
@@ -530,7 +495,6 @@ class WumpusWorld {
             messageElement.textContent = message;
         }
 
-        // Update body class for styling
         document.body.classList.remove('game-won', 'game-lost');
         if (this.gameState === 'won') {
             document.body.classList.add('game-won');
@@ -568,7 +532,6 @@ class WumpusWorld {
     }
 }
 
-// Initialize game when page loads
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM loaded, initializing game...');
     try {
