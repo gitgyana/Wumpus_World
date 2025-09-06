@@ -315,7 +315,7 @@ class WumpusWorld {
         this.gameState = 'won';
         this.score += 1000;
         console.log('Player won the game!');
-        this.showMessage('🎉 Congratulations! You escaped with the gold!');
+        this.showMessage('Congratulations! You escaped with the gold!');
         this.endGame('Victory! You escaped with the gold!');
     }
 
@@ -547,7 +547,7 @@ class WumpusWorld {
         const messageEl = document.getElementById('gameOverMessage');
         const finalScore = document.getElementById('finalScore');
 
-        if (title) title.textContent = this.gameState === 'won' ? '🎉 Victory!' : '💀 Game Over';
+        if (title) title.textContent = this.gameState === 'won' ? '!! Victory !!' : '[*] Game Over [*]';
         if (messageEl) messageEl.textContent = message;
         if (finalScore) finalScore.textContent = this.score;
         if (modal) modal.classList.remove('hidden');
