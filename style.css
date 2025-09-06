@@ -962,8 +962,8 @@ select.form-control {
     align-items: center;
 }
 
-.movement-controls button:nth-child(2) {
-    grid-column: 2;
+.button-logo {
+    display: none;
 }
 
 .action-controls {
@@ -1158,16 +1158,11 @@ button,
         grid-template-columns: 1fr;
     }
 
-    .action-controls {
-        flex-direction: column;
+    .button-text {
+        display: none;
     }
 
-    .movement-controls {
-        grid-template-columns: 1fr;
-        gap: var(--space-6);
-    }
-
-    .movement-controls button:nth-child(2) {
-        grid-column: 1;
+    .button-logo {
+        display: block;
     }
 }
