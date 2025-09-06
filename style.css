@@ -752,6 +752,7 @@ select.form-control {
     font-size: var(--font-size-4xl);
     margin-bottom: var(--space-8);
     color: var(--color-text);
+    padding: 1.5em 0 0 0;
 }
 
 .game-header p {
@@ -900,6 +901,7 @@ select.form-control {
     display: flex;
     flex-direction: row;
     gap: var(--space-16);
+    height: 100%;
 }
 
 .status-item {
@@ -957,6 +959,7 @@ select.form-control {
     grid-template-columns: 1fr;
     gap: var(--space-24);
     margin-bottom: var(--space-24);
+    height: 100%;
 }
 
 .movement-controls {
@@ -1155,6 +1158,10 @@ button,
 
     .col-labels {
         grid-template-columns: repeat(4, 60px);
+    }
+
+    .grid-labels {
+        display: none;
     }
 
     .instructions-content {
