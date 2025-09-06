@@ -80,8 +80,7 @@
     --color-info-rgb: 98, 108, 113;
 
     /* Typography */
-    --font-family-base: "FKGroteskNeue", "Geist", "Inter", -apple-system,
-        BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-family-base: "Asimovian", sans-serif;
     --font-family-mono: "Berkeley Mono", ui-monospace, SFMono-Regular, Menlo,
         Monaco, Consolas, monospace;
     --font-size-xs: 11px;
@@ -890,7 +889,7 @@ select.form-control {
 }
 
 .row-labels span,
-.col-labels span {
+.col-labels span {;
     font-weight: var(--font-weight-bold);
     color: var(--color-text-secondary);
     font-size: var(--font-size-sm);
@@ -1193,4 +1192,8 @@ button,
 
 h3 {
     text-align: center;
+}
+
+span, button {
+    font-family: "Asimovian", sans-serif;
 }
