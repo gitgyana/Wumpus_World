@@ -10,7 +10,7 @@
     <div class="container">
         <!-- Header -->
         <header class="game-header">
-            <h1>🏹 The Wumpus World</h1>
+            <h1 style="padding: 1.5em 0 0 0">The Wumpus World</h1>
             <p>Navigate the cave, find the gold, and escape alive!</p>
         </header>
 
@@ -35,6 +35,35 @@
                         <span>2</span>
                         <span>3</span>
                         <span>4</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="controls-panel">
+                <div class="card">
+                    <div class="card__header">
+                        <h3>Movement Controls</h3>
+                    </div>
+                    <div class="card__body">
+                        <div class="movement-controls">
+                            <button class="btn btn--primary" id="turnLeft">↺ Turn Left</button>
+                            <button class="btn btn--primary" id="forward">↑ Forward</button>
+                            <button class="btn btn--primary" id="turnRight">↻ Turn Right</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card__header">
+                        <h3>Action Controls</h3>
+                    </div>
+                    <div class="card__body">
+                        <div class="action-controls">
+                            <button class="btn btn--secondary" id="grab">Grab</button>
+                            <button class="btn btn--secondary" id="shoot">Shoot</button>
+                            <button class="btn btn--secondary" id="climb">Climb</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -102,35 +131,6 @@
             </div>
         </div>
 
-        <!-- Controls -->
-        <div class="controls-panel">
-            <div class="card">
-                <div class="card__header">
-                    <h3>Movement Controls</h3>
-                </div>
-                <div class="card__body">
-                    <div class="movement-controls">
-                        <button class="btn btn--primary" id="turnLeft">↺ Turn Left</button>
-                        <button class="btn btn--primary" id="forward">↑ Forward</button>
-                        <button class="btn btn--primary" id="turnRight">↻ Turn Right</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card__header">
-                    <h3>Action Controls</h3>
-                </div>
-                <div class="card__body">
-                    <div class="action-controls">
-                        <button class="btn btn--secondary" id="grab">💰 Grab</button>
-                        <button class="btn btn--secondary" id="shoot">🏹 Shoot</button>
-                        <button class="btn btn--secondary" id="climb">🧗 Climb</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- Game Messages -->
         <div class="message-panel">
             <div class="card">
@@ -153,45 +153,45 @@
         </div>
 
         <!-- Instructions -->
-        <div class="instructions">
-            <div class="card">
-                <div class="card__header">
-                    <h3>How to Play</h3>
-                </div>
-                <div class="card__body">
-                    <div class="instructions-content">
-                        <div class="instruction-section">
-                            <h4>Goal</h4>
-                            <p>Find the gold and return to [1,1] to escape the cave safely.</p>
-                        </div>
-                        <div class="instruction-section">
-                            <h4>Hazards</h4>
-                            <ul>
-                                <li><strong>Wumpus (👹):</strong> Deadly creature that kills on contact</li>
-                                <li><strong>Pits (🕳️):</strong> Bottomless holes that are deadly</li>
-                            </ul>
-                        </div>
-                        <div class="instruction-section">
-                            <h4>Perceptions</h4>
-                            <ul>
-                                <li><strong>Stench:</strong> Wumpus in adjacent room</li>
-                                <li><strong>Breeze:</strong> Pit in adjacent room</li>
-                                <li><strong>Glitter:</strong> Gold in current room</li>
-                            </ul>
-                        </div>
-                        <div class="instruction-section">
-                            <h4>Scoring</h4>
-                            <ul>
-                                <li>+1000: Win the game</li>
-                                <li>-1000: Die from hazard</li>
-                                <li>-1: Each move</li>
-                                <li>-10: Using arrow</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!--        <div class="instructions">-->
+<!--            <div class="card">-->
+<!--                <div class="card__header">-->
+<!--                    <h3>How to Play</h3>-->
+<!--                </div>-->
+<!--                <div class="card__body">-->
+<!--                    <div class="instructions-content">-->
+<!--                        <div class="instruction-section">-->
+<!--                            <h4>Goal</h4>-->
+<!--                            <p>Find the gold and return to [1,1] to escape the cave safely.</p>-->
+<!--                        </div>-->
+<!--                        <div class="instruction-section">-->
+<!--                            <h4>Hazards</h4>-->
+<!--                            <ul>-->
+<!--                                <li><strong>Wumpus:</strong> Deadly creature that kills on contact</li>-->
+<!--                                <li><strong>Pits:</strong> Bottomless holes that are deadly</li>-->
+<!--                            </ul>-->
+<!--                        </div>-->
+<!--                        <div class="instruction-section">-->
+<!--                            <h4>Perceptions</h4>-->
+<!--                            <ul>-->
+<!--                                <li><strong>Stench:</strong> Wumpus in adjacent room</li>-->
+<!--                                <li><strong>Breeze:</strong> Pit in adjacent room</li>-->
+<!--                                <li><strong>Glitter:</strong> Gold in current room</li>-->
+<!--                            </ul>-->
+<!--                        </div>-->
+<!--                        <div class="instruction-section">-->
+<!--                            <h4>Scoring</h4>-->
+<!--                            <ul>-->
+<!--                                <li>+1000: Win the game</li>-->
+<!--                                <li>-1000: Die from hazard</li>-->
+<!--                                <li>-1: Each move</li>-->
+<!--                                <li>-10: Using arrow</li>-->
+<!--                            </ul>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
     </div>
 
     <script src="app.js"></script>
