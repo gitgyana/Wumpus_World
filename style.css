@@ -634,7 +634,7 @@ select.form-control {
 }
 @media (min-width: 1280px) {
     .container {
-        max-width: var(--container-xl);
+        /*max-width: var(--container-xl);*/
     }
 }
 
@@ -934,7 +934,9 @@ select.form-control {
 }
 
 .perception {
+    width: 100%;
     display: flex;
+    justify-content: center;
     align-items: center;
     gap: var(--space-8);
     padding: var(--space-6) var(--space-8);
